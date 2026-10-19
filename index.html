@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Shower Presentation Engine</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="node_modules/@shower/ribbon/styles/index.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
+    />
+
+    <style>
+      .shower {
+        --slide-ratio: calc(16 / 9);
+      }
+
+      :root {
+        --dark-theme-grey: #bebebe;
+      }
+
+      .progress::before {
+        background-color: #f644d1;
+      }
+      .border-red {
+        &:not(.next),
+        &.next.active {
+          outline: 2px solid #ed4344;
+          outline-offset: 2px;
+        }
+
+        .shower.full
+          &.next:not(.hidden):not(.next:not(:is(.visited, .active)) .next) {
+          visibility: visible;
+        }
+      }
+
+      .dib {
+        display: inline-block;
+      }
+
+      .border-bottom-red {
+        position: relative;
+      }
+      .border-bottom-red::after {
+        content: '';
+        inset: -2px;
+        position: absolute;
+        border-bottom: 2px solid #ed4344;
+      }
+
+      .slide {
+        background-color: light-dark(#fff, #000);
+        color: rgb(201, 209, 217);
+
+        &::after {
+          background-image: url("data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2050%20100'%3e%3cpath%20fill='%23f644d1'%20d='M0%200h50v100L25%2080%200%20100'/%3e%3c/svg%3e");
+          /* background-image: url(assets/bookmark.png);
+          background-size: contain;
+          background-repeat: no-repeat; */
+        }
+
+        .lighter {
+          --dark-theme-grey: color-mix(var(--dark-theme-grey) 30%, #fff);
+        }
+
+        h2 {
+          color: var(--dark-theme-grey);
+
+          &.shout {
+            font-size: 120px;
+            text-wrap: balance;
+            padding: 0 40px;
+            box-sizing: border-box;
+
+            &.font-90 {
+              font-size: 90px;
+            }
+          }
+        }
+
+        li {
+          color: var(--dark-theme-grey);
+        }
+      }
+
+      pre code.hljs {
+        /* padding: 0; */
+      }
+
+      .codeError {
+        text-decoration: underline wavy red;
+      }
+
+      .font-size-10,
+      .fs10,
+      .fz10 {
+        font-size: 10px;
+      }
+      .font-size-12,
+      .fs12,
+      .fz12 {
+        font-size: 12px;
+      }
+      .font-size-14,
+      .fs14,
+      .fz14 {
+        font-size: 14px;
+      }
+
+      .font-size-16,
+      .fs16,
+      .fz16 {
+        font-size: 16px;
+      }
+
+      .font-size-18,
+      .fs18,
+      .fz18 {
+        font-size: 18px;
+      }
+
+      .font-size-20,
+      .fs20,
+      .fz20 {
+        font-size: 20px;
+      }
+
+      .font-size-22,
+      .fs22,
+      .fz22 {
+        font-size: 22px;
+      }
+
+      .font-size-24,
+      .fs24,
+      .fz24 {
+        font-size: 24px;
+      }
+
+      .fs80,
+      .fz80 {
+        font-size: 80px !important;
+      }
+      .fs100,
+      .fz100 {
+        font-size: 100px !important;
+      }
+
+      .nm {
+        margin-left: 0 !important;
+      }
+
+      .cover {
+        object-fit: cover;
+      }
+
+      .diagram {
+        display: block;
+        margin: auto;
+        max-height: 80%;
+        height: 100%;
+        width: 50%;
+      }
+
+      .diagramTransform {
+        object-fit: contain;
+        object-position: center calc(100% - 50px);
+      }
+
+      .bt03 {
+        filter: brightness(0.3);
+      }
+
+      .bt05 {
+        filter: brightness(0.5);
+      }
+      .bt07 {
+        filter: brightness(0.7);
+      }
+    </style>
+  </head>
+  <body class="shower list">
+    <header class="caption">
+      <h1>Открытий микрофон</h1>
+      <p>Тараненко Андрей. ИТ-Холдинг Т1</p>
+    </header>
+
+    <section class="slide black clear">
+      <h2 class="shout fz80"></h2>
+    </section>
+
+    <div class="progress"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@shower/core/dist/shower.min.js"></script>
+
+    <!-- <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/typescript.min.js"
+    ></script>
+
+    <script defer>
+      hljs.highlightAll();
+    </script> -->
+  </body>
+</html>
