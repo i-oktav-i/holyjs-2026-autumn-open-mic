@@ -190,25 +190,191 @@
       <p>Тараненко Андрей. ИТ-Холдинг Т1</p>
     </header>
 
-    <section class="slide black clear">
-      <h2 class="shout fz80"></h2>
-    </section>
+    <div>
+      <section class="slide black">
+        <h2 class="shout">Bit Masking</h2>
+      </section>
 
-    <div class="progress"></div>
+      <section class="slide black">
+        <h2 class="shout">Зачем?</h2>
+      </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/@shower/core/dist/shower.min.js"></script>
+      <section class="slide black">
+        <h2 class="shout">Есть объекты с признаками</h2>
+      </section>
 
-    <!-- <script
-      defer
-      src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"
-    ></script>
-    <script
-      defer
-      src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/typescript.min.js"
-    ></script>
+      <section class="slide black">
+        <h2>Тип данных</h2>
 
-    <script defer>
+        <pre><code class="hljs language-typescript nm fz16">const atms: {
+  id: string;
+  features: {
+    workingNow: boolean;
+    supportsNFC: boolean;
+    qrCodeWithdraw: boolean;
+    /* ... */
+  };
+}[];
+</code></pre>
+      </section>
+
+      <section class="slide black">
+        <h2 class="shout fz80">
+          Как мы отфильтруем по нужному набору фильтров
+        </h2>
+      </section>
+
+      <section class="slide black">
+        <h2>Фильтрация данных</h2>
+
+        <pre><code class="hljs language-typescript nm fz16">const targetFilters = {/*  */};
+const targetFiltersKeys = Object.keys(targetFilters);
+const filtered = atms.filter((atm) =&gt;
+  targetFiltersKeys.each((key) =&gt; {
+    const featureValue = atm.features[key];
+    return !targetFilters[key] || featureValue === targetFilters[key];
+  }),
+);
+</code></pre>
+      </section>
+
+      <section class="slide black">
+        <h2 class="shout fz80">
+          Bit Masking позволяет компактно хранить и работать с наборами
+          признаков
+        </h2>
+      </section>
+
+      <section class="slide black">
+        <h2 class="shout">Как это работает?</h2>
+      </section>
+
+      <section class="slide black">
+        <h2 class="shout fz80">
+          За каждым признаком закрепляется бит в двоичном представлении числа
+        </h2>
+      </section>
+
+      <section class="slide black">
+        <h2>Маски</h2>
+
+        <pre><code class="hljs language-typescript nm">const masks = {
+  workingNow: 1 &lt;&lt; 0, // 001
+  supportsNFC: 1 &lt;&lt; 1, // 010
+  qrCodeWithdraw: 1 &lt;&lt; 2, // 100
+};
+</code></pre>
+      </section>
+
+      <section class="slide black">
+        <h2 class="shout">Для работы с ними используются побитовые операции</h2>
+      </section>
+
+      <section class="slide black">
+        <h2 class="shout">Объявим три утилиты для работы</h2>
+      </section>
+
+      <section class="slide black">
+        <h2>Утилиты работы с масками</h2>
+
+        <pre><code class="hljs language-typescript nm fz16">const combine = (...flags) =&gt; flags.reduce((mask, flag) =&gt; mask | flag, 0);
+
+const exclude = (mask, toExclude) =&gt; mask &amp; ~toExclude;
+
+const isMatch = (mask, required) =&gt; (mask &amp; required) === required;
+</code></pre>
+      </section>
+
+      <section class="slide black">
+        <h2 class="shout">Обновим хранение и фильтрацию</h2>
+      </section>
+
+      <section class="slide black">
+        <h2>Обновленный код</h2>
+
+        <pre><code class="hljs language-typescript nm fz16">const atms: {
+  id: string;
+  featuresMask: number;
+}[];
+
+const targetFilter = combine(/*  */);
+
+const filtered = atms.filter((atm) =&gt; isMatch(atm.featuresMask, targetFilter));
+</code></pre>
+      </section>
+    </div>
+
+    <div style="counter-reset: slide">
+      <section class="slide black">
+        <h2 class="shout">Как я буду замедлять себя на будущих выступлениях</h2>
+      </section>
+
+      <section class="slide black">
+        <h2 class="shout">Делать паузу после каждой законченной мысли</h2>
+      </section>
+
+      <section class="slide black">
+        <h2 class="shout">Отчетливо произносить окончания слов</h2>
+      </section>
+
+      <section class="slide black">
+        <h2 class="shout">Не пытаться заканчивать мысль на одном дыхании</h2>
+      </section>
+
+      <section class="slide black">
+        <h2 class="shout">Устанавливай зрительный контакт</h2>
+      </section>
+
+      <section class="slide black">
+        <h2 class="shout">Использовать</h2>
+      </section>
+
+      <section class="slide black">
+        <h2 class="shout">смену</h2>
+      </section>
+
+      <section class="slide black">
+        <h2 class="shout">слайдов</h2>
+      </section>
+
+      <section class="slide black">
+        <h2 class="shout">как</h2>
+      </section>
+
+      <section class="slide black">
+        <h2 class="shout">сигнал</h2>
+      </section>
+
+      <section class="slide black">
+        <h2 class="shout">остановиться</h2>
+      </section>
+
+      <section class="slide black">
+        <h2 class="shout">Задавай аудитории вопросы</h2>
+      </section>
+
+      <section class="slide black">
+        <h2 class="shout">Не пытайся успеть больше за счёт скорости</h2>
+      </section>
+
+      <section class="slide black">
+        <h2 class="shout">Добавь напоминания в заметки докладчика</h2>
+      </section>
+    </div>
+
+    <div style="counter-reset: slide">
+      <section class="slide black">
+        <h2 class="shout">Тут будут мемы</h2>
+      </section>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/typescript.min.js"></script>
+
+    <script>
       hljs.highlightAll();
-    </script> -->
+    </script>
+
+    <script src="node_modules/@shower/core/dist/index.js"></script>
   </body>
 </html>
